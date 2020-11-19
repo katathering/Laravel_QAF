@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('questions/answers/table', function () {
+    return view('table');
+});
+
+Route::post('/saveAnswer', [AnswerController::class, 'store']);
+
+/*Route::post('/saveAnswer', function () {
+    $data = "etwas";
+    echo $data;
+});*/
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('products', ProductController::class);
+Route::resource('questions', QuestionController::class);
+
+Route::resource('answers', AnswerController::class);
