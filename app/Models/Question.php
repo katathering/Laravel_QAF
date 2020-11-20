@@ -10,11 +10,11 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'question', 'content', 'image_source'
+        'question', 'content', 'image_source', 'user_id'
     ];
 
-    public function answers()
+    public function getImageAttribute()
     {
-        return $this->hasMany(Answer::class);
+        return $this->image_source;
     }
 }

@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -55,8 +55,6 @@
                             </x-jet-dropdown-link>
                         @endif
 
-                        <div class="border-t border-gray-100"></div>
-
                         <!-- Team Management -->
                         @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                             <div class="block px-4 py-2 text-xs text-gray-400">
@@ -74,8 +72,6 @@
                                 </x-jet-dropdown-link>
                             @endcan
 
-                            <div class="border-t border-gray-100"></div>
-
                             <!-- Team Switcher -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Switch Teams') }}
@@ -85,8 +81,20 @@
                                 <x-jet-switchable-team :team="$team" />
                             @endforeach
 
-                            <div class="border-t border-gray-100"></div>
+
                         @endif
+
+                        <form method="POST" action="{{ route('myQuestions') }}">
+                            @csrf
+
+                            <x-jet-dropdown-link href="{{ route('myQuestions') }}"
+                                                 onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                My Questions
+                            </x-jet-dropdown-link>
+                        </form>
+
+                        <div class="border-t border-gray-100"></div>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -98,6 +106,7 @@
                                 {{ __('Logout') }}
                             </x-jet-dropdown-link>
                         </form>
+
                     </x-slot>
                 </x-jet-dropdown>
             </div>

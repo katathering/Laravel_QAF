@@ -1,5 +1,5 @@
 <div>
-    <h1>{{$question_id}}</h1>
+    @if(Auth::user())
     <form wire:submit.prevent="store({{$question_id}})">
         @csrf
         <div class="row">
@@ -14,6 +14,10 @@
             </div>
         </div>
     </form>
+
+    @else
+        <p>You have the right answer? Then login and share your knowledge!</p>
+    @endif
     <div id="div">
         <table class="table table-bordered">
             <tr>
@@ -22,22 +26,12 @@
             </tr>
             @foreach ($answers->reverse() as $answer)
                 <tr>
-                    <td>{{ $answer->answer }}</td>
-                    {{--   <td>
-                           <form action="{{ route('answers.destroy',$answer->id) }}" method="POST">
-
-                               <a class="btn btn-info" href="{{ route('answers.show',$answer->id) }}">Show</a>
-
-                               <a class="btn btn-primary" href="{{ route('answers.edit',$answer->id) }}">Edit</a>
-
-                               @csrf
-                               @method('DELETE')
-
-                               <button type="submit" class="btn btn-danger">Delete</button>
-                           </form>
-                       </td>--}}
+                    <td>{{ $answer->answer }}<br>
+                        <small>answered <strong>{{ $answer->created_at->diffForHumans() }}</strong> by <strong>{{ (\App\Models\User::where('id', $answer->user_id)->pluck('name')->first()) ?? 'the awesome creator' }}</strong></small>
+                    </td>
                 </tr>
             @endforeach
         </table>
     </div>
 </div>
+

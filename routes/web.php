@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Livewire\Answertable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +17,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/questions');
 });
 
 Route::post('/saveAnswer', [AnswerController::class, 'store']);
 
+Route::get('/myQuestions', function (){
+    return redirect('/questions');
+});
+Route::post('/myQuestions', [QuestionController::class, 'myQuestions'])->name('myQuestions');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/questions');
 })->name('dashboard');
 
-Route::resource('questions', QuestionController::class);
+Route::resource('questions', QuestionController::class)->only('index', 'show', 'create');
+Route::resource('questions', QuestionController::class)->middleware('auth')->except('index', 'show');
 
-Route::resource('answers', AnswerController::class);
+

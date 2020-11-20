@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('questions.store') }}" method="POST">
+    <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -42,7 +42,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Image:</strong>
-                    <input type="text" name="image_source" class="form-control" placeholder="Image">
+                    <input type="file" id="image" name="image" class="form-control" placeholder="Image">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -4,16 +4,18 @@ namespace App\Http\Livewire;
 
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Answertable extends Component
 {
     public $answer;
     public $question_id;
+    public $search = '';
 
     public function render()
     {
-        $answers = Answer::all();
+        $answers = Answer::where('question_id', $this->question_id)->get();
         return view('livewire.answertable', compact('answers'));
     }
 
@@ -27,8 +29,9 @@ class Answertable extends Component
             'answer' => 'required'
         ]);
         $array = ['question_id' => $question_id];
-        $etwas = array_merge($validatedData, $array);
+        $user_array = ['user_id' => Auth::id()];
+        $newAnswer = array_merge($validatedData, $array, $user_array);
 
-        Answer::create($etwas);
+        Answer::create($newAnswer);
     }
 }
