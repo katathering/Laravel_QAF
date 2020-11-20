@@ -19,16 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('questions/answers/table', function () {
-    return view('table');
-});
-
 Route::post('/saveAnswer', [AnswerController::class, 'store']);
-
-/*Route::post('/saveAnswer', function () {
-    $data = "etwas";
-    echo $data;
-});*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

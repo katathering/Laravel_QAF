@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -10,7 +12,7 @@ class AnswerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -31,7 +33,7 @@ class AnswerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Factory|View
      */
     public function create()
     {
@@ -41,9 +43,8 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param $question_index
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
@@ -59,8 +60,8 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Answer $answer
+     * @return Factory|View
      */
     public function show(Answer $answer)
     {
@@ -70,8 +71,8 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Answer $answer
+     * @return Factory|View
      */
     public function edit(Answer $answer)
     {
@@ -81,8 +82,8 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Answer  $answer
+     * @param Request $request
+     * @param Answer $answer
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Answer $answer)
@@ -101,8 +102,9 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param Answer $answer
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Answer $answer)
     {
