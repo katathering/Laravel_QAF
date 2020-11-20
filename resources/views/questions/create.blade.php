@@ -23,20 +23,20 @@
         </div>
     @endif
 
-    <form action="{{ route('answers.store') }}" method="POST">
+    <form action="{{ route('questions.store') }}" method="POST">
         @csrf
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Answer:</strong>
-                    <input type="text" name="answer" class="form-control" placeholder="Title">
+                    <strong>Question:</strong>
+                    <input type="text" name="question" class="form-control" placeholder="Your Question">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Content:</strong>
-                    <textarea class="form-control" style="height:150px" name="content" placeholder="Content"></textarea>
+                    <textarea class="form-control" style="height:150px" name="content" placeholder="Describe your Problem"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

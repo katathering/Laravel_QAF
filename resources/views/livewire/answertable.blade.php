@@ -1,5 +1,6 @@
 <div>
-    <form wire:submit.prevent="store">
+    <h1>{{$question_id}}</h1>
+    <form wire:submit.prevent="store({{$question_id}})">
         @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -13,7 +14,6 @@
             </div>
         </div>
     </form>
-
     <div id="div">
         <table class="table table-bordered">
             <tr>

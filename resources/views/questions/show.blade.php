@@ -2,6 +2,7 @@
 
 @section('content')
 
+    @livewireScripts
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -29,7 +30,8 @@
     </div>
 
     <p id="new"></p>
-    <livewire:answertable />
+    @livewire('answertable', ['question_id' => $question->id])
+  {{--  <livewire:answertable />--}}
 
 @endsection
 

@@ -12,4 +12,9 @@ class Question extends Model
     protected $fillable = [
         'question', 'content', 'image_source'
     ];
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

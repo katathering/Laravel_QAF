@@ -9,6 +9,7 @@ use Livewire\Component;
 class Answertable extends Component
 {
     public $answer;
+    public $question_id;
 
     public function render()
     {
@@ -18,13 +19,16 @@ class Answertable extends Component
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @param $question_id
      */
-    public function store()
+    public function store($question_id)
     {
         $validatedData = $this->validate([
-            'answer' => 'required',
+            'answer' => 'required'
         ]);
-        Answer::create($validatedData);
+        $array = ['question_id' => $question_id];
+        $etwas = array_merge($validatedData, $array);
+
+        Answer::create($etwas);
     }
 }

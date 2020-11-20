@@ -48,6 +48,7 @@ class QuestionController extends Controller
             'detail' => 'required',
         ]);*/
 
+       /* dd($request->toArray());*/
         Question::create($request->all());
 
         return redirect()->route('questions.index')
