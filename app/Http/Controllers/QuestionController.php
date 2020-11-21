@@ -126,6 +126,12 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
+       $file_name = $question->image_source;
+        if ($file_name != NULL) {
+            unlink('images/' . $file_name);
+        }
+
+
         $question->delete();
 
         return redirect()->route('questions.index')

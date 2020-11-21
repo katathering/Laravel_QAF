@@ -9,12 +9,18 @@
             @livewire('navigation-dropdown')
         @else
             <div class="px-4 sm:px-6 lg:px-8 not-logged-in ">
-                <div style="width: 70%" class="m-auto">
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline mr-5">Login</a>
+                <div class="flex pull-right">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                            {{ __('Login') }}
+                        </x-jet-nav-link>
+                    </div>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-10 text-sm text-gray-700 underline mr-5">Register</a>
-                    @endif
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                            {{ __('Register') }}
+                        </x-jet-nav-link>
+                    </div>
                 </div>
             </div>
         @endauth
@@ -54,11 +60,13 @@
             </div>
             @if($question->image_source != NULL)
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <img style="max-height: 18rem" src="{{ asset('images/'.$question->image_source)}}">
+                <img style="max-height: 18rem" src="{{ asset('images/'.$question->image_source)}}" alt="image not found">
             </div>
             @endif
         </div>
     </div>
+    <br>
+    <br>
     <hr style="margin-bottom: 3rem; height: 2px; background-color: black">
 
     <p id="AnswerAdded" style="color:green;"></p>
