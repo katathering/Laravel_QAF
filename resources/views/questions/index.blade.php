@@ -1,31 +1,48 @@
 @extends('questions.layout')
 
-@section('content')
+@section('style')
+    <style>
+        .container{
+            width: 50%;
+        }
+    </style>
+@endsection
+
+@section('header')
     @livewireScripts
-
     @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-                @livewire('navigation-dropdown')
-            @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
-            @endauth
-        </div>
+        @auth
+            @livewire('navigation-dropdown')
+        @else
+            <div class="px-4 sm:px-6 lg:px-8 not-logged-in ">
+                <div style="width: 70%" class="m-auto">
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline mr-5">Login</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="ml-10 text-sm text-gray-700 underline mr-5">Register</a>
+                    @endif
+                </div>
+            </div>
+        @endauth
+
     @endif
-{{--
-    @livewire('navigation-dropdown')
---}}
+@endsection
+
+@section('content')
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD Example from scratch - ItSolutionStuff.com</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('questions.create') }}"> Create New Question</a>
+                <h1>
+                    @if(count($questions) === 0)
+                        What a surprise? The World has no Questions.
+                    @elseif(count($questions) <= 3)
+                        Hooray! Some Questioner were here
+                    @else
+                        Look at all these Questions!
+                    @endif
+                </h1>
             </div>
         </div>
     </div>
@@ -36,22 +53,13 @@
         </div>
     @endif
 
- {{--   <table class="table table-bordered">
-        <tr>
-            <th>{{ count($questions) === 1 ? count($questions).' Question' : count($questions).' Questions' }}</th>
-        </tr>
-        @foreach ($questions as $question)
-            <tr>
-                <td><a class="btn btn-info" href="{{ route('questions.show',$question->id) }}">{{ $question->question }}</a> <br>
-                    <small>asked {{ $question->created_at->diffForHumans() }}</small><br>
-                    <small>{{ count(\App\Models\Answer::where('question_id',  $question->id)->get()) === 1 ? count(\App\Models\Answer::where('question_id',  $question->id)->get()).' Answer' : count(\App\Models\Answer::where('question_id',  $question->id)->get()).' Answers' }}</small>
-                </td>
-            </tr>
-        @endforeach
-    </table>--}}
-
     @livewire('filter')
-
+  {{--  <div class="page">
     {!! $questions->links() !!}
+    </div>--}}
+
+
+    <div class="space"></div>
+
 
 @endsection

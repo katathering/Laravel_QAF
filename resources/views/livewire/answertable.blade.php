@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Your Answer:</strong>
+                    <strong>You have the answer? Then add it!</strong>
                     <textarea id="answer" class="form-control" style="height:150px" name="answer" wire:model="answer" placeholder="Your Answer"></textarea>
                 </div>
             </div>
@@ -33,5 +33,6 @@
             @endforeach
         </table>
     </div>
+    <div class="space"></div>
 </div>
 

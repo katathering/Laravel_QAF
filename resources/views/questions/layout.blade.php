@@ -98,7 +98,20 @@
             outline: black;
         }
 
+        /*.page{
+            margin-bottom: 10rem;
+            border-top: 1px solid black;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }*/
+
+        .space{
+            margin-top: 10rem;
+        }
+
+
     </style>
+    @yield('style')
 </head>
 <body>
 @yield('header')

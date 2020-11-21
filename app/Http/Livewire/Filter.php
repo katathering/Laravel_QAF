@@ -11,8 +11,9 @@ class Filter extends Component
 
     public function render()
     {
+        $count = Question::all()->count();
         return view('livewire.filter', [
-            'questions' => Question::where('question','LIKE', "%$this->search%")->get(),
+            'questions' => Question::where('question','LIKE', "%$this->search%")->get(), 'count' => $count
         ]);
     }
 }
