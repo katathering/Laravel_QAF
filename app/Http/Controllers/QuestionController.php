@@ -44,10 +44,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);*/
+
+        $request->validate([
+            'question' => 'required',
+            'content' => 'required',
+            'user_id' => 'required',
+            'image' => 'max:100000'
+        ]);
 
 
         $file = $request->file('image');
@@ -145,8 +148,6 @@ class QuestionController extends Controller
         $filename = pathinfo($original_filename, PATHINFO_FILENAME);
         $filename = preg_replace("/\s+/", '-', $filename);
         $original_extension = $file->getClientOriginalExtension();
-
-        // Create unique file name
         $final_filename = $filename.'_'.random_int(100, 1000000).'.'.$original_extension;
 
         return $final_filename;

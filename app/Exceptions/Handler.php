@@ -13,8 +13,24 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        \Symfony\Component\HttpFoundation\File\Exception\FileException::class,
     ];
+
+    public function render($request, Throwable $exception)
+    {
+        if ($this->isHttpException($exception)) {
+            if ($exception->getStatusCode() == 404) {
+                /*return response()->view('errors.' . '404', [], 404);*/
+                return response('alls ok?');
+            }
+            if ($exception->getStatusCode() == 413) {
+                /*return response()->view('errors.' . '404', [], 404);*/
+                return response('alls ok?');
+            }
+        }
+
+        return parent::render($request, $exception);
+    }
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -37,4 +53,6 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
 }

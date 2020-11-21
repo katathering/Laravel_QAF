@@ -1,27 +1,31 @@
 @extends('questions.layout')
 
-@section('content')
+@section('header')
     @livewireScripts
-
     @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-                @livewire('navigation-dropdown')
-            @else
+
+        @auth
+            @livewire('navigation-dropdown')
+        @else
+            <div class="px-4 sm:px-6 lg:px-8 not-logged-in">
                 <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                    <a href="{{ route('register') }}" class="ml-10 text-sm text-gray-700 underline ">Register</a>
                 @endif
-            @endauth
-        </div>
+            </div>
+        @endauth
+
     @endif
+@endsection
+
+@section('content')
 
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('questions.index') }}"> Back</a>
+                <a id="back" class="btn btn-primary" href="{{ route('questions.index') }}"> Back</a>
             </div>
             <div class="pull-right">
                 @if(Auth::user() && $question->user_id == Auth::user()->id)
