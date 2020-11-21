@@ -56,6 +56,10 @@
             border: .0625rem solid #2c2c2c;
         }*/
 
+        #image{
+            width: 30%;
+        }
+
         .not-logged-in{
             background-color: #e6e6e6;
             text-align: right;
