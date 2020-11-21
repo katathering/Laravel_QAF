@@ -41,7 +41,7 @@
                     @if(Auth::user() && $question->user_id == Auth::user()->id)
                         <form action="{{ route('questions.destroy',$question->id) }}" method="POST">
                             <a class="btn btn-primary" href="{{ route('questions.edit', $question->id) }}"> Edit</a>
-                            <button type="submit" id="delete" class="btn btn-danger" onclick="alert()">Delete</button>
+                            <button type="submit" id="delete" class="btn btn-danger show_confirm">Delete</button>
                             @csrf
                             @method('DELETE')
                         </form>
@@ -75,9 +75,12 @@
             $('#AnswerAdded').html('Good job! You added an Answer.');
         })
 
-        $('#delete').on('click', function () {
-            alert('hjkl');
-        })
+        $('.show_confirm').click(function(e) {
+            if(!confirm('Are you sure you want to delete your miraculous question? If so, all the answers will be gone!')) {
+                e.preventDefault();
+            }
+        });
+
     </script>
 @endsection
 
