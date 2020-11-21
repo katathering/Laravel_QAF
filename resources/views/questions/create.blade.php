@@ -1,13 +1,13 @@
 @extends('questions.layout')
 
+@section('header')
+@livewire('navigation-dropdown')
+@endsection
 @section('content')
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Add New Question</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('questions.index') }}"> Back</a>
+            <div id="back">
+                <a class="btn btn-primary-outline" href="{{ route('questions.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-
+    <h1>Add New Question</h1>
     <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Add Question</button>
             </div>
         </div>
 
