@@ -17,7 +17,7 @@ class AnswerController extends Controller
     public function index()
     {
 
-        $answers = Answer::latest()->paginate(5);
+        $answers = Answer::all();
 
         return view('answers.index',compact('answers'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Livewire\Answertable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +21,7 @@ Route::get('/', function () {
 
 Route::post('/saveAnswer', [AnswerController::class, 'store']);
 
-Route::get('/myQuestions', function (){
+Route::get('/myQuestions', function () {
     return redirect('/questions');
 });
 Route::post('/myQuestions', [QuestionController::class, 'myQuestions'])->name('myQuestions');

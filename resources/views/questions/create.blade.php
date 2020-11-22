@@ -1,7 +1,7 @@
 @extends('questions.layout')
 
 @section('header')
-@livewire('navigation-dropdown')
+    @livewire('navigation-dropdown')
 @endsection
 @section('content')
     <div class="row mt-5">
@@ -36,7 +36,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Describe your problem</strong>
-                    <textarea class="form-control" style="height:150px" name="content" placeholder="Describe your Problem"></textarea>
+                    <textarea class="form-control" style="height:150px" name="content"
+                              placeholder="Describe your Problem"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -55,13 +56,13 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $('#image').on('change', function() {
+        $('#image').on('change', function () {
             const size =
                 (this.files[0].size / 1024 / 1024).toFixed(2);
-            if (size > 10 ) {
+            if (size > 10) {
                 $('#image').addClass('is-invalid');
                 $('#submit').attr('disabled', 'disabled');
-                $("#error").html('<b>' + 'Upload is too large ('+ size +  ' MB)! It should be less then 10MB </b>');
+                $("#error").html('<b>' + 'Upload is too large (' + size + ' MB)! It should be less then 10MB </b>');
             } else {
                 $('#image').removeClass('is-invalid');
                 $('#submit').removeAttr('disabled');

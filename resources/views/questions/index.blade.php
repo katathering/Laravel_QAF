@@ -42,11 +42,11 @@
             <div class="pull-left">
                 <h1>
                     @if(count($questions) === 0)
-                        What a surprise? The World has no Questions.
+                        What a surprise? The World has no questions.
                     @elseif(count($questions) <= 3)
-                        Hooray! Some Questioner were here
+                        Hooray! Some questioner was here
                     @else
-                        Look at all these Questions!
+                        Look at all these questions!
                     @endif
                 </h1>
             </div>
@@ -60,12 +60,6 @@
     @endif
 
     @livewire('filter')
-    {{--  <div class="page">
-      {!! $questions->links() !!}
-      </div>--}}
-
 
     <div class="space"></div>
-
-
 @endsection

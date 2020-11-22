@@ -13,7 +13,7 @@ class Filter extends Component
     {
         $count = Question::all()->count();
         return view('livewire.filter', [
-            'questions' => Question::where('question','LIKE', "%$this->search%")->get(), 'count' => $count
+            'questions' => Question::where('question', 'LIKE', "%$this->search%")->get(), 'count' => $count
         ]);
     }
 }

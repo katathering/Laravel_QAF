@@ -43,15 +43,15 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4">
-                <div style="padding-top: 2.5rem">
-                    @if(Auth::user() && $question->user_id == Auth::user()->id)
-                        <form action="{{ route('questions.destroy',$question->id) }}" method="POST">
-                            <a class="btn btn-primary" href="{{ route('questions.edit', $question->id) }}"> Edit</a>
-                            <button type="submit" id="delete" class="btn btn-danger show_confirm">Delete</button>
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    @endif
+            <div style="padding-top: 2.5rem">
+                @if(Auth::user() && $question->user_id == Auth::user()->id)
+                    <form action="{{ route('questions.destroy',$question->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('questions.edit', $question->id) }}"> Edit</a>
+                        <button type="submit" id="delete" class="btn btn-danger show_confirm">Delete</button>
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                @endif
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -59,9 +59,10 @@
                 <p>{{ $question->content }}</p>
             </div>
             @if($question->image_source != NULL)
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <img style="max-height: 18rem" src="{{ asset('images/'.$question->image_source)}}" alt="image not found">
-            </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <img style="max-height: 18rem" src="{{ asset('images/'.$question->image_source)}}"
+                         alt="image not found">
+                </div>
             @endif
         </div>
     </div>
@@ -73,18 +74,15 @@
 
     @livewire('answertable', ['question_id' => $question->id])
 
-
-
-
 @endsection
 @section('script')
     <script>
-        $('#newAnswer').on('click', function(){
+        $('#newAnswer').on('click', function () {
             $('#AnswerAdded').html('Good job! You added an Answer.');
         })
 
-        $('.show_confirm').click(function(e) {
-            if(!confirm('Are you sure you want to delete your miraculous question? If so, all the answers will be gone!')) {
+        $('.show_confirm').click(function (e) {
+            if (!confirm('Are you sure you want to delete your miraculous question? If so, all the answers will be gone!')) {
                 e.preventDefault();
             }
         });
