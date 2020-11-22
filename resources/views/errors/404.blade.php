@@ -39,7 +39,7 @@
         <p>Best you go back to all the questions. They're waiting to be answered by a wise person like you!</p>
         <br>
         <div class="back">
-            <a href="{{route('questions.index')}}">To the Questions!</a>
+            <a id="back-to-the-questions" href="{{route('questions.index')}}">To the Questions!</a>
         </div>
     </div>
 </div>

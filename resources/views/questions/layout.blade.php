@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @livewireStyles
 
@@ -44,6 +44,10 @@
             margin: 2rem 0 2rem 0;
         }
 
+        h2{
+            font-size: 28px;
+        }
+
         #image{
             border:none;
         }
@@ -52,9 +56,9 @@
             margin-top: 1rem;
         }
 
-        /*#back .btn {
-            border: .0625rem solid #2c2c2c;
-        }*/
+        #back{
+            margin-top: 20px;
+        }
 
         #image{
             width: 30%;
@@ -111,6 +115,10 @@
 
         .to-the-question{
             margin-right: 2rem;
+        }
+
+        #logo:hover{
+            background-color: transparent;
         }
 
 

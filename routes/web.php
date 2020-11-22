@@ -19,6 +19,10 @@ Route::get('/', function () {
     return redirect('/questions');
 });
 
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
 Route::post('/saveAnswer', [AnswerController::class, 'store']);
 
 Route::get('/myQuestions', function () {

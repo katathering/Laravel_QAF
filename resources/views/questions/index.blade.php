@@ -15,21 +15,31 @@
         @auth
             @livewire('navigation-dropdown')
         @else
-            <div class="px-4 sm:px-6 lg:px-8 not-logged-in ">
-                <div class="flex pull-right">
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                            {{ __('Login') }}
-                        </x-jet-nav-link>
-                    </div>
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                            {{ __('Register') }}
-                        </x-jet-nav-link>
+            <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex">
+                            <div class="flex-shrink-0 flex items-center">
+                                <a id="logo" href="{{ route('welcome') }}" style="border: none">
+                                    <img style="margin-top: 40px" src="{{asset('Logo/QALogoKlein.png')}}">
+                                </a>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('dashboard') }}"
+                                                :active="request()->routeIs('questions.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('questions.create') }}"
+                                                :active="request()->routeIs('questions.create')">
+                                    {{ __('Create New Question') }}
+                                </x-jet-nav-link>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </nav>
         @endauth
 
     @endif
