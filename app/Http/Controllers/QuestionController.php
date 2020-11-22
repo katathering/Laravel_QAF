@@ -22,7 +22,7 @@ class QuestionController extends Controller
     {
         $questions = Question::latest()->paginate(5);
 
-        return view('questions.index',compact('questions'))
+        return view('questions.index', compact('questions'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -44,20 +44,17 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'question' => 'required',
             'content' => 'required',
-            'user_id' => 'required',
-            'image' => 'max:100000'
         ]);
 
 
         $file = $request->file('image');
-        if ($file){
+        if ($file) {
             $file_name = $this->prepareImage($file);
             $image = ['image_source' => $file_name];
-        }else{
+        } else {
             $image = ['image_source' => NULL];
         }
 
@@ -68,12 +65,12 @@ class QuestionController extends Controller
 
         $new = Question::create($newQuestion);
 
-        if ($file && $new){
+        if ($file && $new) {
             $file->move(public_path('images'), $file_name);
         }
 
         return redirect()->route('questions.index')
-            ->with('success','Question created successfully.');
+            ->with('success', 'Question created successfully.');
     }
 
     /**
@@ -84,8 +81,8 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        return view('questions.show',compact('question'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('questions.show', compact('question'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
@@ -97,7 +94,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        return view('questions.edit',compact('question'));
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -109,15 +106,15 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        /*$request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);*/
+        $request->validate([
+            'question' => 'required',
+            'content' => 'required',
+        ]);
 
         $question->update($request->all());
 
         return redirect()->route('questions.index')
-            ->with('success','Question updated successfully');
+            ->with('success', 'Question updated successfully');
     }
 
     /**
@@ -129,26 +126,34 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
+        $file_name = $question->image_source;
+        if ($file_name != NULL) {
+            unlink('images/' . $file_name);
+        }
+
+
         $question->delete();
 
         return redirect()->route('questions.index')
-            ->with('success','Question deleted successfully');
+            ->with('success', 'Question deleted successfully');
     }
 
-    public function myQuestions(){
+    public function myQuestions()
+    {
         $user = Auth::user();
         $questions = Question::where('user_id', $user->id)->paginate(5);
 
-        return view('questions.myQuestions',compact('questions'))
+        return view('questions.myQuestions', compact('questions'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function prepareImage($file){
+    public function prepareImage($file)
+    {
         $original_filename = $file->getClientOriginalName();
         $filename = pathinfo($original_filename, PATHINFO_FILENAME);
         $filename = preg_replace("/\s+/", '-', $filename);
         $original_extension = $file->getClientOriginalExtension();
-        $final_filename = $filename.'_'.random_int(100, 1000000).'.'.$original_extension;
+        $final_filename = $filename . '_' . random_int(100, 1000000) . '.' . $original_extension;
 
         return $final_filename;
     }

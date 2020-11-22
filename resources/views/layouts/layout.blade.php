@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Laravel 8 CRUD Application - ItSolutionStuff.com</title>
-{{--
+    <title>Q&A Forum</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
---}}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -17,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @livewireStyles
 
@@ -46,6 +44,10 @@
             margin: 2rem 0 2rem 0;
         }
 
+        h2{
+            font-size: 28px;
+        }
+
         #image{
             border:none;
         }
@@ -54,8 +56,12 @@
             margin-top: 1rem;
         }
 
-        #back .btn {
-            border: .0625rem solid #2c2c2c;
+        #back{
+            margin-top: 20px;
+        }
+
+        #image{
+            width: 30%;
         }
 
         .not-logged-in{
@@ -96,8 +102,28 @@
             outline: black;
         }
 
+        /*.page{
+            margin-bottom: 10rem;
+            border-top: 1px solid black;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }*/
+
+        .space{
+            margin-top: 10rem;
+        }
+
+        .to-the-question{
+            margin-right: 2rem;
+        }
+
+        #logo:hover{
+            background-color: transparent;
+        }
+
+
     </style>
-    @yield('head')
+    @yield('style')
 </head>
 <body>
 @yield('header')

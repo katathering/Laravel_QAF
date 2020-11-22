@@ -1,9 +1,9 @@
-@extends('questions.layout')
+@extends('layouts.layout')
 
-@section('head')
+@section('style')
     <style>
-        .container{
-            max-width: 50%!important;
+        .container {
+            width: 50%;
         }
     </style>
 @endsection
@@ -12,19 +12,48 @@
     @livewireScripts
     @if (Route::has('login'))
 
-            @auth
-                @livewire('navigation-dropdown')
-            @else
-                <div class="px-4 sm:px-6 lg:px-8 not-logged-in ">
-                    <div style="width: 70%" class="m-auto">
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline mr-5">Login</a>
+        @auth
+            @livewire('navigation-dropdown')
+        @else
+            <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex">
+                            <div class="flex-shrink-0 flex items-center">
+                                <a id="logo" href="{{ route('welcome') }}" style="border: none">
+                                    <img style="margin-top: 40px" src="{{asset('Logo/QALogoKlein.png')}}">
+                                </a>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('dashboard') }}"
+                                                :active="request()->routeIs('questions.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('questions.create') }}"
+                                                :active="request()->routeIs('questions.create')">
+                                    {{ __('Create New Question') }}
+                                </x-jet-nav-link>
+                            </div>
+                            <div class="flex pull-right" style="margin-left: 30rem">
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                                        {{ __('Login') }}
+                                    </x-jet-nav-link>
+                                </div>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-10 text-sm text-gray-700 underline mr-5">Register</a>
-                    @endif
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                                        {{ __('Register') }}
+                                    </x-jet-nav-link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            @endauth
+            </nav>
+        @endauth
 
     @endif
 @endsection
@@ -36,16 +65,13 @@
             <div class="pull-left">
                 <h1>
                     @if(count($questions) === 0)
-                        What a surprise? The World has no Questions.
+                        What a surprise? The World has no questions.
                     @elseif(count($questions) <= 3)
-                        Hooray! Some Questioner were here
+                        Hooray! Some questioner was here
                     @else
-                        Look at all these Questions!
+                        Look at all these questions!
                     @endif
                 </h1>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-outline-info mb-3" href="{{ route('questions.create') }}"> Create New Question</a>
             </div>
         </div>
     </div>
@@ -58,5 +84,5 @@
 
     @livewire('filter')
 
-
+    <div class="space"></div>
 @endsection

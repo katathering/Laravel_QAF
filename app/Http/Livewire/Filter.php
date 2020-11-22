@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Filter extends Component
@@ -11,8 +12,9 @@ class Filter extends Component
 
     public function render()
     {
+        $count = Question::all()->count();
         return view('livewire.filter', [
-            'questions' => Question::where('question','LIKE', "%$this->search%")->get(),
+            'questions' => Question::where('question', 'LIKE', "%$this->search%")->get(), 'count' => $count
         ]);
     }
 }
