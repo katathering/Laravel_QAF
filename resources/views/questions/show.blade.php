@@ -1,4 +1,4 @@
-@extends('questions.layout')
+@extends('layouts.layout')
 
 
 @section('header')
@@ -28,6 +28,19 @@
                                                 :active="request()->routeIs('questions.create')">
                                     {{ __('Create New Question') }}
                                 </x-jet-nav-link>
+                            </div>
+                            <div class="flex pull-right" style="margin-left: 30rem">
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                                        {{ __('Login') }}
+                                    </x-jet-nav-link>
+                                </div>
+
+                                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                    <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                                        {{ __('Register') }}
+                                    </x-jet-nav-link>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/questions');
+    return redirect('/welcome');
 });
 
 Route::get('/welcome', function () {

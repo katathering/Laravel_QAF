@@ -1,4 +1,4 @@
-@extends('questions.layout')
+@extends('layouts.layout')
 
 @section('header')
     @livewire('navigation-dropdown')

@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
+        Question::factory()->count(10)->create();
+        Answer::factory()->count(100)->create();
     }
 }
