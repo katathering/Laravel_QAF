@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Filter extends Component

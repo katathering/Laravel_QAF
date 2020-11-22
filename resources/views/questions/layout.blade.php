@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel 8 CRUD Application - ItSolutionStuff.com</title>
+    <title>Q&A Forum</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -107,6 +107,10 @@
 
         .space{
             margin-top: 10rem;
+        }
+
+        .to-the-question{
+            margin-right: 2rem;
         }
 
 

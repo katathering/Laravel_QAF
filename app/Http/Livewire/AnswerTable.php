@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class AnswerTable extends Component
+class Answertable extends Component
 {
     public $answer;
     public $question_id;
