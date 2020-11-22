@@ -20,10 +20,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::latest()->paginate(5);
+        $questions = Question::all();
 
-        return view('questions.index', compact('questions'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -138,15 +137,6 @@ class QuestionController extends Controller
             ->with('success', 'Question deleted successfully');
     }
 
-    public function myQuestions()
-    {
-        $user = Auth::user();
-        $questions = Question::where('user_id', $user->id)->paginate(5);
-
-        return view('questions.myQuestions', compact('questions'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
     public function prepareImage($file)
     {
         $original_filename = $file->getClientOriginalName();
@@ -156,5 +146,16 @@ class QuestionController extends Controller
         $final_filename = $filename . '_' . random_int(100, 1000000) . '.' . $original_extension;
 
         return $final_filename;
+    }
+
+    public function myQuestions()
+    {
+        $user = Auth::user();
+        $questions = Question::where('user_id', $user->id)->get();
+        $count = Question::where('user_id', $user->id)->count();
+
+        return view('questions.MyQuestions', [
+            'questions' => $questions, 'count' => $count
+        ]);
     }
 }

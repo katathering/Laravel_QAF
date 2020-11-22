@@ -48,6 +48,5 @@
     <h1>Your Questions</h1>
 
     @livewire('my-questions')
-    {!! $questions->links() !!}
 
 @endsection
